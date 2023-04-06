@@ -35,61 +35,32 @@ import io
 #     api_hash=api_hash,
 #     bot_token=bot_token)
 
-
-
-bot = Client("bot",
-             bot_token=os.environ.get("BOT_TOKEN"),
-             api_id=int(os.environ.get("API_ID")),
-             api_hash=os.environ.get("API_HASH")),
-
-  
-
-keyboard = InlineKeyboardMarkup(
-    [
-        [
-            InlineKeyboardButton(
-                text="Devloper",
-                url="https://pornhub.com/",
-            ),
-            InlineKeyboardButton(
-                text="Repo",
-                url="https://lund-chushLoo.com/repo",
-            ),
-        ],
-    ]
+bot = Client(
+    "bot",
+    bot_token=os.environ.get("BOT_TOKEN"),
+    api_id=int(os.environ.get("API_ID")),
+    api_hash=os.environ.get("API_HASH")
 )
 
-
-@bot.on_message(filters.command(["pyro"]))
+@bot.on_message(filters.command(["start"]))
 async def account_login(bot: Client, m: Message):
-
- editable = await m.reply_text("**Hi Press**\n**Text** = /pro_txt\n**Top** = /pro_top\n**Vision** = /pro_vision\n**Jw** = /pro_jw\n**Olive** = /pro_olive\n**Addapdf** = /adda_pdf")
-
+    editable = await m.reply_text("Hello im txt file downloader\nPress /pyro to download links listed in a txt file in the format **Name:link**\n\nBot made by NOOB CREATOR BOY")
 
 @bot.on_message(filters.command(["cancel"]))
 async def cancel(_, m):
-    editable = await m.reply_text("Canceling All process Plz wait\n🚦🚦 Last Process Stopped 🚦🚦")
+    editable = await m.reply_text("Canceling All process Plz wait")
     global cancel
     cancel = True
     await editable.edit("cancled")
     return
-
-
 @bot.on_message(filters.command("restart"))
 async def restart_handler(_, m):
     await m.reply_text("Restarted!", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
-
-@bot.on_message(filters.command(["pro_txt"]))
+@bot.on_message(filters.command(["pyro"]))
 async def account_login(bot: Client, m: Message):
-    user = m.from_user.id if m.from_user is not None else None
-    if user is not None and user not in sudo_users:
-        await m.reply("**bhag bhosadi ke", quote=True)
-        return
-    else:
-        editable = await m.reply_text(
-            "Hello Bruh **I am Text Downloader Bot**. I can download videos from **text** file one by one.**\n\nDeveloper** : NAAM TO SUNA HOGA**\nLanguage** : Python**\nFramework** : Pyrogram\n\nSend **TXT** File {Name : Link}")
+    editable = await m.reply_text("Send txt file**")
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
