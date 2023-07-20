@@ -37,9 +37,9 @@ import io
 
 bot = Client(
     "bot",
-    bot_token=os.environ.get("BOT_TOKEN"),
-    api_id=int(os.environ.get("API_ID")),
-    api_hash=os.environ.get("API_HASH")
+    bot_token=os.environ.get("6352757012:AAH7kCukdkTqZIq4r9GXn30rraGkzoXnsac"),
+    api_id=int(os.environ.get("20717621")),
+    api_hash=os.environ.get("a68af155e7f0c79b1baab1f185f4181d")
 )
 
 @bot.on_message(filters.command(["start"]))
@@ -64,7 +64,8 @@ async def account_login(bot: Client, m: Message):
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
-
+
+
     path = f"./downloads/{m.chat.id}"
 
     try:
